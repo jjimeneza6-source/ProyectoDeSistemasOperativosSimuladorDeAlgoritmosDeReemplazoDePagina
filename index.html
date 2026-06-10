@@ -12,8 +12,9 @@
       <div>
         <p class="eyebrow">Proyecto de Sistemas Operativos</p>
         <h1>Simulador Visual de Reemplazo de Páginas</h1>
-        <p>Explora NRU, FIFO, Segunda Oportunidad, Reloj y Envejecimiento con animaciones paso a paso y estado persistente de RAM.</p>
+        <p>Explora NRU, FIFO, Segunda Oportunidad, Reloj y Envejecimiento con animaciones paso a paso, salarios de RAM y análisis visual.</p>
       </div>
+
       <div class="hero-actions">
         <a class="primary-button" href="views/nru.html">NRU</a>
         <a class="primary-button" href="views/fifo.html">FIFO</a>
@@ -21,8 +22,56 @@
         <a class="primary-button" href="views/clock.html">Reloj</a>
         <a class="primary-button" href="views/aging.html">Envejecimiento</a>
       </div>
+
+      <div class="cards-grid">
+        <article class="info-card">
+          <h2>⚡ Experiencia dinámica</h2>
+          <p>Interacción en tiempo real con cada algoritmo, visualización de marcos y acción de reemplazo pausada para aprender paso a paso.</p>
+        </article>
+        <article class="info-card">
+          <h2>🧠 Aprendizaje práctico</h2>
+          <p>Comprende por qué se elige cada víctima, observando R/M, envejecimiento, puntero de reloj y prioridad de clases NRU.</p>
+        </article>
+        <article class="info-card">
+          <h2>🖥️ Diseño moderno</h2>
+          <p>Interfaz limpia con controles claros y accesibles, botones grandes y secciones informativas para navegar fácilmente entre simuladores.</p>
+        </article>
+        <article class="info-card">
+          <h2>📱 Compatible</h2>
+          <p>Se adapta a pantallas grandes y pequeñas para usar desde desktop o celular sin perder claridad ni orden.</p>
+        </article>
+      </div>
     </section>
 
+    <section class="hero-card" style="margin-top: 24px;">
+      <div>
+        <p class="eyebrow">Herramientas incluidas</p>
+        <h2>Visualiza los algoritmos más importantes</h2>
+        <p>Cada simulador muestra cómo se mueve la memoria, qué página se expulsa y por qué. Ideal para proyectos, prácticas y presentaciones.</p>
+      </div>
+      <div class="cards-grid">
+        <article class="info-card">
+          <strong>NRU</strong>
+          <p>Elige la página menos usada recientemente según bits de referencia y modificación.</p>
+        </article>
+        <article class="info-card">
+          <strong>FIFO</strong>
+          <p>Expulsa la página que lleva más tiempo en memoria, sin considerar bits adicionales.</p>
+        </article>
+        <article class="info-card">
+          <strong>Segunda Oportunidad</strong>
+          <p>Da una segunda oportunidad a páginas con R=1 antes de expulsarlas.</p>
+        </article>
+        <article class="info-card">
+          <strong>Reloj</strong>
+          <p>Usa un puntero circular para revisar bit R y decidir la víctima como un reloj real.</p>
+        </article>
+        <article class="info-card">
+          <strong>Envejecimiento</strong>
+          <p>Usa contadores de 8 bits para simular el envejecimiento de páginas y elegir la menos reciente.</p>
+        </article>
+      </div>
+    </section>
   </main>
 </body>
 </html>
