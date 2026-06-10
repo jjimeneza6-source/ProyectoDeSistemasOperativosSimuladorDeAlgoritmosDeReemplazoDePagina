@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NRU - Simulador de Reemplazo de Páginas</title>
+  <link rel="stylesheet" href="../css/main.css" />
+</head>
+<body>
+  <main class="container">
+    <header class="header-panel">
+      <div>
+        <p class="eyebrow">NRU</p>
+        <h1>Simulador NRU</h1>
+        <p class="help-text">El algoritmo NRU agrupa las páginas en clases 0 a 3 según los bits R y M y elige al azar de la clase de menor prioridad disponible.</p>
+      </div>
+      <div>
+        <a class="secondary-button" href="../index.html">Volver al inicio</a>
+      </div>
+    </header>
+
+    <div class="page-shell">
+      <section class="panel workspace">
+        <div class="control-panel">
+          <button id="simulate-btn" class="primary">Ejecutar Paso a Paso</button>
+          <button id="next-btn">Siguiente Simulación (Preservar RAM)</button>
+          <button id="reorganize-btn" class="secondary-button">Reorganizar RAM</button>
+        </div>
+        <div class="info-box" id="incoming-label"></div>
+        <div class="ram-grid" id="ram-grid"></div>
+      </section>
+
+      <aside class="panel">
+        <h2>Consola de Logs</h2>
+        <div class="log-console" id="log-console"></div>
+        <button class="clear-logs-btn" id="clear-logs-btn">Limpiar Logs</button>
+      </aside>
+    </div>
+  </main>
+
+  <div class="modal-overlay" id="result-modal">
+    <div class="modal-card">
+      <h3 id="result-modal-title"></h3>
+      <div id="result-modal-details"></div>
+      <div class="modal-actions">
+        <button id="modal-close-btn" class="primary">Cerrar</button>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { createApp } from '../js/app.js';
+    createApp('nru');
+  </script>
+</body>
+</html>
