@@ -20,12 +20,15 @@ export default class SecondChanceSimulator {
         marco.pagina.bitR = 0;
         marco.pagina.loadTime = Date.now();
         cola.push(marco);
-        await onStep({ index: marco.index, message: `Segunda oportunidad: marco ${marco.index} reingresa al final` });
+        await onStep({ index: marco.index, message: `Segunda oportunidad: marco ${marco.index} se reubica al final de la cola y su bit R se limpia.` });
       } else {
-        return marco.index;
+        return {
+          index: marco.index,
+          reason: `Se expulsa la página ${marco.pagina.id} porque su bit R es 0 después de aplicar segunda oportunidad.`,
+        };
       }
     }
 
-    return 0;
+    return { index: 0, reason: 'No se encontró ninguna página válida para reemplazar.' };
   }
 }

@@ -21,8 +21,14 @@ export default class NRUSimulator {
     }
 
     const claseElegida = tiposDeClasesDelALgoritmo.findIndex((lista) => lista.length > 0);
+    if (claseElegida === -1) {
+      return { index: 0, reason: 'No se encontró ninguna página cargada en RAM para reemplazar.' };
+    }
     const victima = chooseRandom(tiposDeClasesDelALgoritmo[claseElegida]);
-    await onStep({ index: victima, message: `Seleccionada víctima de clase ${claseElegida}` });
-    return victima;
+    await onStep({ index: victima, message: `Seleccionada víctima del marco ${victima} dentro de la clase ${claseElegida}` });
+    return {
+      index: victima,
+      reason: `Se expulsa la página del marco ${victima} porque pertenece a la clase ${claseElegida}, la clase de menor prioridad disponible en NRU.`,
+    };
   }
 }

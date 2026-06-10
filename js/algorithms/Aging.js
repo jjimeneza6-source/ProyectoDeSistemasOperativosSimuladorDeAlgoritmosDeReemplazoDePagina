@@ -22,7 +22,7 @@ export default class AgingSimulator {
         continue;
       }
       await onStep({ index: marco.index, message: `Revisando contador ${marco.pagina.agingCounter} en marco ${marco.index}` });
-      await sleep(520);
+      await sleep(this.delay);
       if (
         !victima ||
         marco.pagina.agingCounter < victima.pagina.agingCounter ||
@@ -31,6 +31,11 @@ export default class AgingSimulator {
         victima = marco;
       }
     }
-    return victima?.index ?? 0;
+    return {
+      index: victima?.index ?? 0,
+      reason: victima
+        ? `Se expulsa la página ${victima.pagina.id} por tener el menor contador de envejecimiento (${victima.pagina.agingCounter}).`
+        : 'No se encontró ninguna página cargada en RAM para reemplazar.',
+    };
   }
 }

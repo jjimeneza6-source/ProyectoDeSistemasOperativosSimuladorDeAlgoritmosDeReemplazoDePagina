@@ -22,7 +22,6 @@
     <div class="page-shell">
       <section class="panel workspace">
         <div class="control-panel">
-          <button id="tick-btn" class="secondary-button">Simular Interrupción de Reloj</button>
           <button id="simulate-btn" class="primary">Ejecutar Paso a Paso</button>
           <button id="next-btn">Siguiente Simulación (Preservar RAM)</button>
           <button id="reorganize-btn" class="secondary-button">Reorganizar RAM</button>
@@ -35,19 +34,13 @@
         <h2>Consola de Logs</h2>
         <div class="log-console" id="log-console"></div>
         <button class="clear-logs-btn" id="clear-logs-btn">Limpiar Logs</button>
+        <div class="result-tab" id="result-tab">
+          <div class="result-tab-header">Resultado de reemplazo</div>
+          <div class="result-content" id="result-content"></div>
+        </div>
       </aside>
     </div>
   </main>
-
-  <div class="modal-overlay" id="result-modal">
-    <div class="modal-card">
-      <h3 id="result-modal-title"></h3>
-      <div id="result-modal-details"></div>
-      <div class="modal-actions">
-        <button id="modal-close-btn" class="primary">Cerrar</button>
-      </div>
-    </div>
-  </div>
 
   <script type="module">
     import { createApp } from '../js/app.js';

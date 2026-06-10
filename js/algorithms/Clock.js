@@ -27,18 +27,24 @@ export default class ClockSimulator {
 
       if (marco.pagina.bitR === 1) {
         marco.pagina.bitR = 0;
-        await onStep({ index, message: `Bit R=1 en marco ${index}, limpiar y seguir` });
+        await onStep({ index, message: `Bit R=1 en marco ${index}, se reinicia a 0 y el puntero avanza.` });
         ram.clockPointer = (ram.clockPointer + 1) % total;
       } else {
         const victima = index;
         ram.clockPointer = (ram.clockPointer + 1) % total;
-        await onStep({ index, message: `Victima encontrada en marco ${victima}` });
-        return victima;
+        await onStep({ index, message: `Víctima encontrada en marco ${victima} con bit R=0.` });
+        return {
+          index: victima,
+          reason: `Se expulsa la página ${marco.pagina.id} porque tenía bit R=0 cuando la aguja del reloj la revisó.`,
+        };
       }
 
       pasos += 1;
     }
 
-    return ram.clockPointer;
+    return {
+      index: ram.clockPointer,
+      reason: 'No se encontró ninguna página válida para reemplazar con el algoritmo del reloj.',
+    };
   }
 }

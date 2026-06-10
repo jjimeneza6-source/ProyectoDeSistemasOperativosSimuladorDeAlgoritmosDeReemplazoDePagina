@@ -17,13 +17,18 @@ export default class RAM {
     this.clockPointer = 0;
   }
 
-  // Llena todos los marcos con páginas aleatorias
+  // Llena todos los marcos con páginas aleatorias y tiempos de carga distintos
   inicializarConPaginas() {
     const ids = [];
-    this.marcos.forEach((marco) => {
+    const now = Date.now();
+    const offsets = Array.from({ length: this.marcos.length }, (_, i) => i * 1000 + Math.floor(Math.random() * 1000));
+    offsets.sort((a, b) => a - b);
+
+    this.marcos.forEach((marco, index) => {
       const id = getRandomId(ids);
       ids.push(id);
-      marco.pagina = new Pagina(id);
+      const loadTime = now - offsets[index];
+      marco.pagina = new Pagina(id, undefined, undefined, loadTime, undefined);
     });
   }
 

@@ -34,19 +34,13 @@
         <h2>Consola de Logs</h2>
         <div class="log-console" id="log-console"></div>
         <button class="clear-logs-btn" id="clear-logs-btn">Limpiar Logs</button>
+        <div class="result-tab" id="result-tab">
+          <div class="result-tab-header">Resultado de reemplazo</div>
+          <div class="result-content" id="result-content"></div>
+        </div>
       </aside>
     </div>
   </main>
-
-  <div class="modal-overlay" id="result-modal">
-    <div class="modal-card">
-      <h3 id="result-modal-title"></h3>
-      <div id="result-modal-details"></div>
-      <div class="modal-actions">
-        <button id="modal-close-btn" class="primary">Cerrar</button>
-      </div>
-    </div>
-  </div>
 
   <script type="module">
     import { createApp } from '../js/app.js';

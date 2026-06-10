@@ -15,8 +15,8 @@
 
 .clock-frame {
   position: absolute;
-  width: clamp(70px, 12vw, 100px);
-  min-height: clamp(70px, 12vw, 100px);
+  width: clamp(60px, 10vw, 88px);
+  min-height: clamp(60px, 10vw, 88px);
   border-radius: clamp(12px, 2vw, 16px);
   background: rgba(15, 23, 42, 0.95);
   border: 1px solid var(--border);

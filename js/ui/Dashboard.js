@@ -9,14 +9,10 @@ export default class Dashboard {
     this.incomingLabel = document.getElementById('incoming-label');
     this.nextButton = document.getElementById('next-btn');
     this.simulateButton = document.getElementById('simulate-btn');
-    this.modal = document.getElementById('result-modal');
-    this.modalTitle = document.getElementById('result-modal-title');
-    this.modalDetails = document.getElementById('result-modal-details');
-    this.modalAction = document.getElementById('modal-close-btn');
+    this.resultTab = document.getElementById('result-tab');
+    this.resultContent = document.getElementById('result-content');
     this.clockPointer = document.getElementById('clock-pointer');
     this.isClock = algorithmName === 'clock';
-
-    this.modalAction.addEventListener('click', () => this.hideModal());
   }
 
   // Dibuja interfaz según algoritmo (grid/círculo)
@@ -93,12 +89,13 @@ export default class Dashboard {
     inner.appendChild(center);
     ring.appendChild(inner);
     this.clockRing.appendChild(ring);
+    this.clockPointer = pointer;
   }
 
   // Posiciona marcos en círculo usando trigonometría
   positionClockFrames() {
     const frameElements = this.clockRing.querySelectorAll('.clock-frame');
-    const radius = 35;
+    const radius = 42;
     const centerX = 50;
     const centerY = 50;
     const total = frameElements.length;
@@ -124,6 +121,9 @@ export default class Dashboard {
     const frame = document.querySelector(`[data-frame-index="${index}"]`);
     if (!frame) return;
     frame.classList.add(state);
+    if (this.isClock && !this.clockPointer) {
+      this.clockPointer = document.getElementById('clock-pointer');
+    }
     if (this.isClock && this.clockPointer) {
       const total = document.querySelectorAll('.clock-frame').length;
       const angle = (index / total) * 360 - 90;
@@ -144,18 +144,20 @@ export default class Dashboard {
     if (this.nextButton) this.nextButton.disabled = !next;
   }
 
-  // Muestra modal con resultados de reemplazo
-  showModal({ title, details, actionText }) {
-    if (!this.modal) return;
-    this.modalTitle.textContent = title;
-    this.modalDetails.innerHTML = details;
-    this.modalAction.textContent = actionText;
-    this.modal.classList.add('active');
+  // Muestra información de resultado en el panel inferior
+  showResult(title, details) {
+    if (!this.resultTab || !this.resultContent) return;
+    this.resultTab.classList.add('active');
+    this.resultContent.innerHTML = `
+      <h3>${title}</h3>
+      <div class="result-body">${details}</div>
+    `;
   }
 
-  // Oculta modal de resultados
-  hideModal() {
-    if (!this.modal) return;
-    this.modal.classList.remove('active');
+  // Oculta el panel de resultado
+  hideResult() {
+    if (!this.resultTab || !this.resultContent) return;
+    this.resultTab.classList.remove('active');
+    this.resultContent.innerHTML = '';
   }
 }

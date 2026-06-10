@@ -19,16 +19,16 @@ const algorithmMap = {
 
 export function createApp(algorithmName) {
   // Inicializa app con algoritmo seleccionado
-  const AlgorithmClass = algorithmMap[algoKey];
+  const AlgorithmClass = algorithmMap[algorithmName];
   const ram = new RAM();
   ram.inicializarConPaginas();
   const incomingPage = { current: ram.generarPaginaEntrante() };
   const logger = new ConsoleLogger(document.getElementById('log-console'));
-  const dashboard = new Dashboard(algoKey, logger);
+  const dashboard = new Dashboard(algorithmName, logger);
   const algorithm = new AlgorithmClass();
-  const agingSimulator = algoKey === 'aging' ? new AgingSimulator() : null;
+  const agingSimulator = algorithmName === 'aging' ? new AgingSimulator() : null;
 
-  logger.log('Inicializando simulador con algoritmo ' + algoKey.toUpperCase());
+  logger.log('Inicializando simulador con algoritmo ' + algorithmName.toUpperCase());
   dashboard.renderRAM(ram, incomingPage.current);
   dashboard.updateButtons({ simulate: true, next: false });
 
@@ -64,7 +64,7 @@ export function createApp(algorithmName) {
       logger.log('RAM reorganizada aleatoriamente. Nueva simulación lista.');
       dashboard.renderRAM(ram, incomingPage.current);
       dashboard.updateButtons({ simulate: true, next: false });
-      dashboard.hideModal();
+      dashboard.hideResult();
     });
   }
 
@@ -79,33 +79,34 @@ export function createApp(algorithmName) {
   async function runSimulation() {
     dashboard.updateButtons({ simulate: false, next: false });
     dashboard.clearHighlights();
+    dashboard.hideResult();
     logger.log('Iniciando análisis de reemplazo.');
 
-    const victimIndex = await algorithm.seleccionarVictima(ram, async ({ index, message }) => {
+    const selection = await algorithm.seleccionarVictima(ram, async ({ index, message }) => {
       dashboard.highlightFrame(index, 'evaluating');
       logger.log(message);
     });
 
+    const victimIndex = selection.index;
+    const victimReason = selection.reason || 'Se seleccionó la página víctima según la política del algoritmo.';
     const victimPage = ram.marcos[victimIndex].pagina;
     lastVictimId = victimPage?.id ?? null;
     dashboard.highlightFrame(victimIndex, 'victim');
     logger.log(`Página víctima: ${victimPage.id} en marco ${victimIndex}`);
+    logger.log(victimReason);
 
     ram.reemplazarMarco(victimIndex, incomingPage.current);
     dashboard.renderRAM(ram, incomingPage.current);
     dashboard.highlightFrame(victimIndex, 'loaded');
 
     const details = `
+      <p>${victimReason}</p>
       <p>Se expulsó la página <strong>${victimPage.id}</strong> del marco <strong>${victimIndex}</strong>.</p>
-      <p>Se cargó la nueva página <strong>${incomingPage.current.id}</strong> con R:${incomingPage.current.bitR} y M:${incomingPage.current.bitM}.</p>
-      <p>Pasos registrados en la consola lateral.</p>
+      <p>Se cargó la nueva página <strong>${incomingPage.current.id}</strong>.</p>
+      <p>Revisa el proceso completo en la consola de logs.</p>
     `;
 
-    dashboard.showModal({
-      title: 'Simulación Finalizada: Página Reemplazada',
-      details,
-      actionText: 'Siguiente Simulación (Preservar RAM)',
-    });
+    dashboard.showResult('Simulación Finalizada: Página Reemplazada', details);
     dashboard.updateButtons({ simulate: false, next: true });
   }
 
@@ -118,7 +119,7 @@ export function createApp(algorithmName) {
       incomingPage.current = ram.generarPaginaEntrante(lastVictimId);
       dashboard.renderRAM(ram, incomingPage.current);
       dashboard.updateButtons({ simulate: true, next: false });
-      dashboard.hideModal();
+      dashboard.hideResult();
       logger.log('Avanzando a la siguiente simulación con la RAM preservada.');
     });
   }

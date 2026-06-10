@@ -16,13 +16,20 @@ export default class FIFOSimulator {
       if (!marco.pagina) {
         continue;
       }
-      await onStep({ index: marco.index, message: `Evaluando marco ${marco.index} con carga ${marco.pagina.loadTime}` });
+      await onStep({ index: marco.index, message: `Evaluando marco ${marco.index} con tiempo de carga ${new Date(marco.pagina.loadTime).toLocaleTimeString()}` });
       await sleep(this.delay);
       if (!victima || marco.pagina.loadTime < victima.pagina.loadTime) {
         victima = marco;
       }
     }
 
-    return victima.index;
+    if (!victima) {
+      return { index: 0, reason: 'No se encontró ninguna página cargada en RAM para reemplazar.' };
+    }
+
+    return {
+      index: victima.index,
+      reason: `Se expulsa la página ${victima.pagina.id} porque es la que más tiempo lleva en RAM.`,
+    };
   }
 }
