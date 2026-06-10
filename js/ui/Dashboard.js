@@ -117,20 +117,12 @@ export default class Dashboard {
     this.incomingLabel.innerHTML = `Página entrante: <strong>${incomingPage.id}</strong> (R:${incomingPage.bitR} M:${incomingPage.bitM})`;
   }
 
-  // Resalta marco y rotación reloj si aplica
+  // Resalta marco y deja la aguja del reloj estática
   highlightFrame(index, state) {
     this.clearHighlights();
     const frame = document.querySelector(`[data-frame-index="${index}"]`);
     if (!frame) return;
     frame.classList.add(state);
-    if (this.isClock && !this.clockPointer) {
-      this.clockPointer = document.getElementById('clock-pointer');
-    }
-    if (this.isClock && this.clockPointer) {
-      const total = document.querySelectorAll('.clock-frame').length;
-      const angle = (index / total) * 360 - 90;
-      this.clockPointer.style.transform = `rotate(${angle}deg)`;
-    }
   }
 
   // Elimina resaltes de todos los marcos
