@@ -95,6 +95,15 @@
   50% { transform: translate(-50%, -50%) scale(1.05); }
 }
 
+@media (max-width: 960px) {
+  .clock-container {
+    min-height: clamp(280px, 50vh, 520px);
+  }
+  .clock-ring {
+    inset: clamp(12px, 3vw, 22px);
+  }
+}
+
 @media (max-width: 768px) {
   .clock-frame {
     width: clamp(60px, 10vw, 90px);

@@ -219,12 +219,56 @@ button:disabled {
   box-shadow: 0 0 0 3px rgba(251, 191, 36, 0.14);
 }
 
-.frame-card.victim {
-  border-color: #ef4444;
-  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.18);
-  animation: pulse-red 1s ease-in-out infinite alternate;
+@media (max-width: 960px) {
+  .page-shell {
+    grid-template-columns: 1fr;
+  }
+
+  .header-panel {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .ram-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
+@media (max-width: 680px) {
+  .container {
+    padding: 20px 16px 28px;
+  }
+
+  .header-panel {
+    gap: 12px;
+  }
+
+  .control-panel {
+    flex-direction: column;
+  }
+
+  .ram-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .frame-card {
+    min-height: auto;
+    padding: 16px;
+  }
+
+  .frame-card h3 {
+    font-size: 1rem;
+  }
+
+  .status-line {
+    gap: 6px;
+  }
+
+  .status-pill {
+    padding: 6px 10px;
+    font-size: 0.79rem;
+  }
+}
 .frame-card.loaded {
   border-color: #22c55e;
   box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.16);

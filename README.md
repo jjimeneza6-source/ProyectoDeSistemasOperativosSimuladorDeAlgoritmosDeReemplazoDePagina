@@ -182,38 +182,6 @@ Después tick:  R=0, Counter=01000000 (64)
 ```
 Selecciona la página con menor contador (considera historial completo).
 
-## 📝 Cambios Recientes
-
-### Versión 1.4 - Interfaz Responsiva ⭐ NUEVO
-- ✅ Media queries completas para todos los breakpoints
-- ✅ Uso de `clamp()` para escalado fluido de componentes
-- ✅ Grid de marcos adaptativo (`auto-fit`)
-- ✅ Console de logs responsivo
-- ✅ Botones y texto escalan automáticamente
-- ✅ Testeado en móvil, tablet y desktop
-
-### Versión 1.3 - Reorganización y Mejoras
-- ✅ Botón "Reorganizar RAM" en todas las simulaciones
-- ✅ Mejora visual de Clock (sin sobreposiciones)
-- ✅ Marcos circulares distribuidos equitativamente
-
-### Versión 1.2 - Sistema de Logs
-- ✅ Botón para limpiar logs
-- ✅ Console con altura fija y scroll vertical
-- ✅ Logging completo de cada paso del algoritmo
-
-### Versión 1.1 - Completitud de Algoritmos
-- ✅ FIFO completamente funcional
-- ✅ Clock con puntero rotativo
-- ✅ Segunda Oportunidad con cola
-- ✅ Aging con contador de 8 bits
-
-### Versión 1.0 - Base
-- ✅ Implementación inicial de NRU
-- ✅ Estructura modular
-- ✅ Visualización básica
-- ✅ Sistema de estado
-
 ## 🎓 Propósito Educativo
 
 Este proyecto fue creado como material didáctico para:
@@ -223,29 +191,11 @@ Este proyecto fue creado como material didáctico para:
 - Comparar eficiencia relativa entre algoritmos
 - Aprender arquitectura modular en JavaScript
 
-## 📋 Especificación Técnica
-
-Para detalles profundos de implementación, consulta `Specification Document (English).md`
-
-## 🚀 Posibles Mejoras Futuras
-
-- Estadísticas de hit/miss rate
-- Comparación lado a lado de múltiples algoritmos
-- Generador de cargas de trabajo personalizables
-- Exportación de resultados
-- Tema claro/oscuro
-- Internacionalización (español/inglés)
-- Gráficas de rendimiento
 
 ## 🐛 Notas de Desarrollo
 
-- Los algoritmos no manipulan el DOM directamente
 - El estado de RAM se preserva entre simulaciones
 - Cada página tiene ID único garantizado
-- Los marcos se renderizaban con superposición en Clock (SOLUCIONADO en v1.3)
 
 ---
-
-**Última actualización:** Junio 2026  
-**Versión:** 1.4
 
