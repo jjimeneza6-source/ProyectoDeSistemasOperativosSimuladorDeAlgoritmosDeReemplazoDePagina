@@ -44,6 +44,23 @@ body {
   gap: 28px;
 }
 
+.hero-layout {
+  display: grid;
+  grid-template-columns: 1.45fr 0.95fr;
+  gap: 24px;
+  align-items: start;
+}
+
+.tools-card {
+  min-width: 320px;
+}
+
+@media (max-width: 1024px) {
+  .hero-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
 .eyebrow {
   margin: 0 0 12px;
   color: var(--primary);
