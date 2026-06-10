@@ -248,3 +248,4 @@ Para detalles profundos de implementación, consulta `Specification Document (En
 
 **Última actualización:** Junio 2026  
 **Versión:** 1.4
+
