@@ -50,11 +50,13 @@
 
 .clock-pointer {
   position: absolute;
-  inset: 50%;
+  left: 50%;
+  top: 50%;
   width: clamp(4px, 0.5vw, 6px);
-  height: 46%;
+  height: 42%;
   background: linear-gradient(180deg, #38bdf8, rgba(56, 189, 248, 0.18));
   transform-origin: bottom center;
+  transform: translateX(-50%) translateY(-100%) rotate(0deg);
   border-radius: 999px;
   box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
   transition: transform 0.3s ease;

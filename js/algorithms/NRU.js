@@ -25,10 +25,12 @@ export default class NRUSimulator {
       return { index: 0, reason: 'No se encontró ninguna página cargada en RAM para reemplazar.' };
     }
     const victima = chooseRandom(tiposDeClasesDelALgoritmo[claseElegida]);
+    const marcoVictima = ram.marcos[victima];
+    const paginaVictima = marcoVictima.pagina;
     await onStep({ index: victima, message: `Seleccionada víctima del marco ${victima} dentro de la clase ${claseElegida}` });
     return {
       index: victima,
-      reason: `Se expulsa la página del marco ${victima} porque pertenece a la clase ${claseElegida}, la clase de menor prioridad disponible en NRU.`,
+      reason: `Se expulsa la página ${paginaVictima.id} del marco ${victima} porque pertenece a la clase ${claseElegida}, la clase de menor prioridad disponible en NRU. Sus bits eran R:${paginaVictima.bitR}, M:${paginaVictima.bitM} y su tiempo de carga era ${new Date(paginaVictima.loadTime).toLocaleTimeString()}.`,
     };
   }
 }

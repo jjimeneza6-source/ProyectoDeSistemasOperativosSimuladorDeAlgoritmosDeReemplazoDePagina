@@ -33,6 +33,7 @@ export default class Dashboard {
     this.ramGrid.innerHTML = ram.marcos
       .map((marco) => {
         const pagina = marco.pagina;
+        const agingBinary = pagina ? pagina.agingCounter.toString(2).padStart(8, '0') : '00000000';
         return `
           <article class="frame-card" data-frame-index="${marco.index}">
             <div style="display:flex;justify-content:space-between;align-items:center;">
@@ -44,7 +45,7 @@ export default class Dashboard {
                 <span class="status-pill R">R:${pagina.bitR}</span>
                 <span class="status-pill M">M:${pagina.bitM}</span>
                 <span class="status-pill">Carga:${new Date(pagina.loadTime).toLocaleTimeString()}</span>
-                <span class="status-pill">Aging:${pagina.agingCounter}</span>
+                <span class="status-pill">Aging:${agingBinary}</span>
               </div>
             ` : '<p class="info-box">Marco sin página asignada.</p>'}
           </article>`;
@@ -65,6 +66,7 @@ export default class Dashboard {
       const card = document.createElement('article');
       card.className = 'clock-frame';
       card.dataset.frameIndex = String(marco.index);
+      const agingBinary = marco.pagina ? marco.pagina.agingCounter.toString(2).padStart(8, '0') : '00000000';
       card.innerHTML = `
         <h3>Marco ${marco.index}</h3>
         <span class="frame-badge">${marco.pagina ? `Página ${marco.pagina.id}` : 'Vacío'}</span>
@@ -72,7 +74,7 @@ export default class Dashboard {
           <div class="status-line">
             <span class="status-pill R">R:${marco.pagina.bitR}</span>
             <span class="status-pill M">M:${marco.pagina.bitM}</span>
-            <span class="status-pill">Aging:${marco.pagina.agingCounter}</span>
+            <span class="status-pill">Aging:${agingBinary}</span>
           </div>
         ` : '<p class="info-box">Vacío</p>'}
       `;

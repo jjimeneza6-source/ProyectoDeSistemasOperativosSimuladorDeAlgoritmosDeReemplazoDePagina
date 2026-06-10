@@ -274,6 +274,11 @@ button:disabled {
   border-color: rgba(239, 68, 68, 0.5);
 }
 
+.clear-logs-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .log-line {
   margin: 0 0 10px;
   font-size: 0.92rem;
